@@ -1,0 +1,14 @@
+/* SecondPage.css */
+.second-page {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    scroll-snap-align: start;
+  }
+  
+  .second-page img {
+    max-width: 100%;
+    height: auto;
+  }

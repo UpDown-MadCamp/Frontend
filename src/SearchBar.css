@@ -1,0 +1,43 @@
+/* SearchBar.css */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px; /* Adjust this value to center vertically as per your design */
+    margin-bottom: 50px;
+    width: 100%;
+  }
+  
+  .search-input {
+    padding: 10px;
+    font-size: 2em;
+    border: 1px solid #ddd;
+    border-right: none; /* Remove right border to merge with button */
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    outline: none; /* Optional: Removes the highlight around the input when selected */
+    width: 70%; /* Adjust the width as per your design requ*/
+    height: 40px;
+  }
+  
+  .search-btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 2em;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-left: none; /* remove the left border to make it seamless with the input */
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    height: 40px;
+  }
+
+  .search-btn:hover {
+    background-color: darkgray;
+    color: white;
+    animation: pulse-animation 1s infinite;
+  }

@@ -1,0 +1,151 @@
+
+/* App.css */
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex; /* Enable flexbox layout */
+  justify-content: space-between; /* Space out logo and buttons */
+  align-items: center; /* Center items vertically */
+  background-color: #333;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.nav-logo {
+  font-size: 3.5ch;
+  background-color: none;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin-left: 30px; /* Adjust as needed */
+}
+
+.nav-button-container {
+  text-decoration: none;
+  background-color:none;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10cm;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: larger;
+}
+
+.nav-button {
+  text-decoration: none;
+  background-color:rgb(100, 131, 100);
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: larger;
+}
+.nav-button:hover {
+  background-color: darkgreen;
+  animation: pulse-animation 1s infinite;
+}
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-text {
+  font-size: 5em;
+  font-weight: bold;
+}
+.App-link {
+  color: #61dafb;
+}
+
+
+
+.login-button {
+  text-decoration: none;
+  background-color: rgb(85, 85, 243);
+  color: white;
+  font-weight: 400;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size:larger;
+}
+
+.login-button:hover {
+  background-color: darkblue;
+  animation: pulse-animation 1s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.footer {
+  background-color: #333;
+  padding: 10px;
+  color: white;
+}
+
+.footer-text {
+  font-size: 0.8em;
+}

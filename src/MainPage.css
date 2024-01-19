@@ -1,0 +1,71 @@
+/* MainPage.css */
+.main-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .content-column-main {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 10px; /* Creates a 20px gap between the child elements */
+    text-align: left;
+  }
+
+  .upload-text {
+    font-size: 5em;
+    opacity: 0; /* Start with text invisible */
+    transform: translateY(100%); /* Start with text off-screen */
+    transition: all 0.5s ease-out;
+  }
+  
+  .upload-text.animate {
+    opacity: 1;
+    transform: translateY(0); /* End with text at its intended position */
+    animation: surface-break 3s ease-out forwards;
+  }
+  
+  @keyframes surface-break {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10px); /* Slight lift to give a "surfacing" feel */
+      opacity: 1;
+    }
+  }
+
+  .upload-sub-text {
+    font-size: 3em;
+    color: darkgray;
+    opacity: 0.4; /* Start with text invisible */
+    transform: translateY(100%); /* Start with text off-screen */
+    transition: all 0.6s ease-out;
+  }
+
+  .upload-sub-text.animate-sub {
+    animation: surface-break 3s ease-out forwards;
+  }
+
+  @keyframes surface-sub-break {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10px); /* Slight lift to give a "surfacing" feel */
+      opacity: 1;
+    }
+  }
