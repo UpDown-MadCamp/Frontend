@@ -3,16 +3,16 @@ import React, { useState } from 'react';
 import './Login.css';
 import SignInModal from './SignInModal';
 import axios from 'axios';
+import { login } from './api';
+import { useAuth } from './AuthContext';
 
 function Login() {
-    const [form, setForm] = useState({
-        username: '',
-        password: ''
-      });
     
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [username_c, setusername_c] = useState('');
+  const [password, setPassword] = useState('');
+  const { username, setusername, email, setemail, isLoggedIn, setIsLoggedIn } = useAuth();
 
-  
   //const handleInputChange = (event) => {
     //const { name, value } = event.target;
     //setCredentials({ ...credentials, [name]: value });
@@ -26,67 +26,81 @@ function Login() {
     setIsModalOpen(false);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm(form => ({
-      ...form,
-      [name]: value
-    }));
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-  // POST 요청은 body에 실어 보냄
-  const response = await axios.post('http://143.248.197.207:3000/auth/login', {
-        username: 'test',
-        password: 'test'
-    });
-
-    if (response.status === 200) {
-        console.log('SignIn Successful:', response.data);
-        // Handle success - perhaps redirecting to another page or updating the UI
+      console.log(username_c, password);
+      const userData = await login(username_c, password);
+      
+      if (userData.status === 200) {
+        setemail(userData.data.user.email);
+        setusername(userData.data.user.username);
+        setIsLoggedIn(true);
       } else {
-        console.error('SignIn Failed:', response.status);
-        // Handle errors, such as showing a user-friendly error message
+        setIsLoggedIn(false);
       }
+      console.log('로그인 데이터:', userData);
+      
+    } catch (error) {
+      setIsLoggedIn(false);
+      console.error('로그인 실패:', error);
+    }
+  };
 
-  } catch (e) {
-    console.error(e);
-  }
+  const handlePasswordChange = () => {
+    // Logic to handle password change
   };
 
   return (
-    <div className="login-page">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label>
+    <div>
+      
+      {isLoggedIn ? (
+        <div className='login-page'>
+            <div className="container">
+            <div className="section">
+              <h1 className="header">mypage</h1>
+              <p className="info"><strong>내 이름</strong> {username}</p>
+              <p className="info"><strong>내 이메일</strong> {email}</p>
+            </div>
+            <div className="section">
+              <p className="welcomeMessage">welcome to updown </p>
+              <button onClick={handlePasswordChange} className="editButton">비밀번호 수정하기</button>
+            </div>
+          </div>
 
-        <input className='input-text'
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={form.username}
-          onChange={handleChange}
-          required
-        />
-        </label>
-        <label>
-
-        <input className='input-text'
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
-        </label>
-        <button type="submit">Login</button>
-      </form>
-
-      <button onClick={handleOpenModal} className = "signButton">If not resgistered, Sign In</button>
-      {isModalOpen && <SignInModal onClose={handleCloseModal} />}
+          <div className='container-sub'> </div>
+          </div>
+      ): (
+        <div className='login-page'>
+        <form className="login-form" onSubmit={handleSubmit}>
+            <h1>Login</h1>
+            <input className='input-text'
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={username_c}
+              onChange={(e) => setusername_c(e.target.value)}
+              required
+            />
+    
+    
+            <input className='input-text'
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+    
+            <button type="submit">Login</button>
+          </form>
+    
+          <button onClick={handleOpenModal} className = "signButton">If not resgistered, Sign In</button>
+          {isModalOpen && <SignInModal onClose={handleCloseModal} />}
+          </div>
+      )}
+      
     </div>
   );
 }

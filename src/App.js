@@ -7,10 +7,12 @@ import SecondPage from './SecondPage';
 import Login from './Login';
 import Upload from './Upload';
 import SignInModal from './SignInModal';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
     <BrowserRouter>
+    <AuthProvider>
       <div className="App">
         <nav className="navbar">
           <Link to="/" className="nav-logo" >Upload</Link>
@@ -36,6 +38,7 @@ function App() {
           <div className="footer-text">© 2024 Your Company</div>
         </footer>
       </div>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

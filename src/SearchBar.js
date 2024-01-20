@@ -17,7 +17,7 @@ function SearchBar() {
         className="search-input"
         onKeyUp={handleSearch}
       />
-      <text className="search-btn">search</text>
+      <p className="search-btn">search</p>
     </div>
   );
 }
