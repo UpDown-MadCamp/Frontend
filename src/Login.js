@@ -38,7 +38,7 @@ function Login() {
 
     try {
   // POST 요청은 body에 실어 보냄
-  const response = await axios.post('http://143.248.197.207:3000/auth/login', {
+  const response = await axios.post('http://localhost:5000/auth/login', {
         username: 'test',
         password: 'test'
     });
