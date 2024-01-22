@@ -27,6 +27,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+
       console.log(username_c, password);
       const userData = await login(username_c, password);
       
@@ -37,6 +38,7 @@ function Login() {
         sessionStorage.setItem('user', JSON.stringify(userData.data.user));
         sessionStorage.setItem('islogged', true)
         window.location.reload();
+
       } else {
         sessionStorage.setItem('islogged', false)
         window.location.reload();
