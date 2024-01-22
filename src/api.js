@@ -40,7 +40,7 @@ export { login };
 const download = async (private_key) => {
   
   try {
-    const response = await api.post('/download', { private_key: private_key });
+    const response = await api.post('files/download', { private_key: private_key });
     if (response.status === 200){
     console.log('다운로드 성공:', response.data);
     return response;
