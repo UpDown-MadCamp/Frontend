@@ -29,7 +29,6 @@ const FileList = ({ files, totalSize }) => {
 
   const handleNextClick = () => {
     setCurrentPage(current => Math.min(current + 1, totalPages));
-    window.location.reload();
   };
   const truncate = (str, num) => {
     if (str.length <= num) {
