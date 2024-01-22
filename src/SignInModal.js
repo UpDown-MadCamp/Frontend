@@ -38,7 +38,8 @@ function SignInModal({ onClose }) {
       if (response.status === 201) {
         console.log('success');
       } else {
-        console.log('failed')
+        alert('이미 존재하는 아이디입니다');
+        console.log('failed');
       }
     } catch (error) {
       console.error('로그인 실패:', error);

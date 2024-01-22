@@ -4,6 +4,7 @@ import './Login.css';
 import SignInModal from './SignInModal';
 import axios from 'axios';
 import { login } from './api';
+import { setFiles } from './api';
 import { useAuth } from './AuthContext';
 import FileTypeRatioTable from './FileTypeRatioTable';
 
@@ -42,6 +43,7 @@ function Login() {
         sessionStorage.setItem('username', userData.data.user.username);
         sessionStorage.setItem('user', JSON.stringify(userData.data.user));
         sessionStorage.setItem('islogged', true)
+        setFiles();
         window.location.reload();
 
       } else {
@@ -122,11 +124,11 @@ function Login() {
           </div>
 
           <div className='container-sub'>
-          <FileTypeRatioTable fileTypeRatio={fileTypeRatio} />
           <div className='text-column'> 
-          <p> totalSize : {totalSize} </p>
-          <p> {estimatedCost} </p>  
+          <p> totalSize : {(totalSize/1024).toFixed(2)} KB </p>
+          <p> {estimatedCost} 요금제 </p>  
           </div>
+          <FileTypeRatioTable fileTypeRatio={fileTypeRatio} />
           </div>
           </div>
       ): (

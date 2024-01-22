@@ -7,6 +7,7 @@
     margin: 20px;
     margin-left: 10%;
     width: 76%; /* Adjust width as needed */
+    height: 100%;
   }
   
   .header {
@@ -25,6 +26,12 @@
     border-bottom: 1px solid #eaeaea;
   }
   
+  .fileItem:hover{
+    background-color: #eaeaea;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
   .fileName {
     font-size: 16px;
     color: #666;

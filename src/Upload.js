@@ -4,6 +4,7 @@ import MainPage from './MainPage';
 import { useAuth } from './AuthContext';
 import FileList from './FileList';
 import axios from 'axios';
+import {setFiles} from './api';
 
 function Upload() {
   const [animate, setAnimate] = useState(false);
@@ -56,29 +57,6 @@ function Upload() {
     }
   };
   
-  const setFiles = async () => {
-    try{
-      const response = await axios.post('http://localhost:5000/files/find',{email : email}, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        
-      });
-      if (response.status === 200) {
-        sessionStorage.removeItem('files');
-        sessionStorage.setItem('files', JSON.stringify(response.data.files));
-        window.location.reload();
-      } else {
-        sessionStorage.removeItem('files');
-        sessionStorage.setItem('files', JSON.stringify(files_local));
-        window.location.reload();
-      }
-
-    } catch (error) {
-      alert('업로드 목록 불러오기 실패');
-      console.error('error',error);
-    }
-  }
 
   const files = JSON.parse(sessionStorage.getItem('files') || '[]');
 
