@@ -7,15 +7,15 @@
 
   .download-header {
     text-align: left;
-    margin-left: 12%;
-    font-size: 4ch;
+    margin-left: 11%;
+    font-size: 3ch;
   }
   
   .korean-text {
     text-align: left;
-    margin: 15px 12%;
+    margin: 15px 11%;
     margin-bottom: 20px;
-    font: 3.5ch sans-serif;
+    font: 3ch sans-serif;
   }
   
   .content-column {

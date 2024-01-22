@@ -85,7 +85,7 @@
 .white-list {
   margin-left: 10%;
   background-color: white;
-  width: 80%; /* Adjust size as needed */
+  width: 90%; /* Adjust size as needed */
   height: 50%; /* Adjust size as needed */
   border-radius: 4px;
   /* Further styling for your list */
@@ -102,4 +102,63 @@
   color: black;
   font-weight: 500;
   font-size: 2em; /* Adjust size as needed */
+}
+
+.upload-content button {
+  padding: 7px;
+  background-color: #239419;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 2.5ch;
+  height: 12%;
+  width: 15%;
+  margin-left: 58%;
+}
+
+.upload-content button:hover {
+  background-color: lightgreen;
+}
+
+.fileInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.button-row {
+  display: flex;
+
+  flex-direction: row;
+}
+.fileInputLabel {
+  font-size: 16px;
+  color: white;
+  background-color: #4CAF50;
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+  width:10%;
+}
+
+.fileInputLabel:hover {
+  background-color: #367c39;
+}
+
+.fileInputLabel_end {
+  font-size: 16px;
+  color: white;
+  background-color: #5985e2;
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+  width:10%;
 }
