@@ -8,10 +8,12 @@ import axios from 'axios';
 function Upload() {
   const [animate, setAnimate] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const files = [
-    { name: 'file_name1.pdf', size: '15MB' },
-    { name: 'file_name2.png', size: '12KB' }
+  const files_local = [
+    { name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }
   ];
+
+  sessionStorage.setItem('files', JSON.stringify(files_local));
+  
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -22,31 +24,65 @@ function Upload() {
   }, []);
 
   const islogged = sessionStorage.getItem('islogged')
+  const email = sessionStorage.getItem('email');
 
   const uploadFile = async () => {
     if (!selectedFile) {
       alert('파일을 선택해주세요.');
       return;
     }
-
     const formData = new FormData();
     formData.append('file', selectedFile);
+    formData.append('email',email);
 
     try {
-      const response = await axios.post('http://localhost:5000/upload/file', formData, {
+      const response = await axios.post('http://localhost:5000/files/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      alert(response.data);
-      console.log('서버 응답:', response.data);
-      setSelectedFile();
+
+      if (response.status === 201) {
+        alert(response.data.message);
+        console.log('서버 응답:', response.data);
+        setFiles();
+      } else {
+        alert(response.data.message);
+        console.log(response.data);
+        setFiles();
+      }
     } catch (error) {
       alert('업로드 실패');
       console.error('업로드 실패:', error);
     }
   };
+  
 
+  const setFiles = async () => {
+    try{
+      const response = await axios.post('http://localhost:5000/files/find',{email : email}, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        
+      });
+      if (response.status === 200) {
+        sessionStorage.removeItem('files');
+        sessionStorage.setItem('files', JSON.stringify(response.data.files));
+        window.location.reload();
+      } else {
+        sessionStorage.removeItem('files');
+        sessionStorage.setItem('files', JSON.stringify(files_local));
+        window.location.reload();
+      }
+
+    } catch (error) {
+      alert('업로드 목록 불러오기 실패');
+      console.error('error',error);
+    }
+  }
+
+  const files = JSON.parse(sessionStorage.getItem('files') || '[]');
 
   return (
     <div className="upload-page">
@@ -64,7 +100,7 @@ function Upload() {
               {!selectedFile? (<label htmlFor="fileInput" className="fileInputLabel">
               파일 선택하기
               </label>):(<label htmlFor="fileInput" className="fileInputLabel_end">
-              파일 선택완료
+              {selectedFile.filename}
               </label>)}
               
               <button onClick={uploadFile} >upload</button>

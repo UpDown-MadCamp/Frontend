@@ -10,7 +10,6 @@ function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username_c, setusername_c] = useState('');
   const [password, setPassword] = useState('');
-  const { username, setusername, email, setemail, isLoggedIn, setIsLoggedIn } = useAuth();
 
   //const handleInputChange = (event) => {
     //const { name, value } = event.target;
@@ -32,21 +31,19 @@ function Login() {
       const userData = await login(username_c, password);
       
       if (userData.status === 200) {
-        setemail(userData.data.user.email);
-        setusername(userData.data.user.username);
-        setIsLoggedIn(true);
+        console.log(userData.data.user);
+        sessionStorage.setItem('email',userData.data.user.email);
+        sessionStorage.setItem('username', userData.data.user.username);
         sessionStorage.setItem('user', JSON.stringify(userData.data.user));
         sessionStorage.setItem('islogged', true)
         window.location.reload();
       } else {
-        setIsLoggedIn(false);
         sessionStorage.setItem('islogged', false)
         window.location.reload();
       }
       console.log('로그인 데이터:', userData);
       
     } catch (error) {
-      setIsLoggedIn(false);
       console.error('로그인 실패:', error);
     }
   };
@@ -57,7 +54,8 @@ function Login() {
     window.location.reload();
   };
   const islogged = sessionStorage.getItem('islogged');
-
+  const username = sessionStorage.getItem('username');
+  const email = sessionStorage.getItem('email');
   return (
     <div>
       

@@ -8,6 +8,7 @@ const FileList = ({ files, totalSize }) => {
       {files.map((file, index) => (
         <div key={index} className={styles.fileItem}>
           <span className={styles.fileName}>{index + 1}. {file.name}</span>
+          <span className={styles.fileKey}>{file.key}</span>
           <span className={styles.fileSize}>{file.size}</span>
         </div>
       ))}

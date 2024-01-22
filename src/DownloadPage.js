@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './DownloadPage.css';
 import SearchBar from './SearchBar';
 import MainPage from './MainPage';
-import {download} from './api';
+import { download } from './api';
 
 function DownloadPage() {
   const [Private_key, setPrivate_key] = useState('');
