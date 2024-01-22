@@ -7,7 +7,6 @@ import { login } from './api';
 import { useAuth } from './AuthContext';
 
 function Login() {
-    
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username_c, setusername_c] = useState('');
   const [password, setPassword] = useState('');
@@ -36,8 +35,13 @@ function Login() {
         setemail(userData.data.user.email);
         setusername(userData.data.user.username);
         setIsLoggedIn(true);
+        sessionStorage.setItem('user', JSON.stringify(userData.data.user));
+        sessionStorage.setItem('islogged', true)
+        window.location.reload();
       } else {
         setIsLoggedIn(false);
+        sessionStorage.setItem('islogged', false)
+        window.location.reload();
       }
       console.log('로그인 데이터:', userData);
       
@@ -48,13 +52,16 @@ function Login() {
   };
 
   const handlePasswordChange = () => {
-    // Logic to handle password change
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('islogged');
+    window.location.reload();
   };
+  const islogged = sessionStorage.getItem('islogged');
 
   return (
     <div>
       
-      {isLoggedIn ? (
+      {islogged ? (
         <div className='login-page'>
             <div className="container">
             <div className="section">
@@ -64,11 +71,13 @@ function Login() {
             </div>
             <div className="section">
               <p className="welcomeMessage">welcome to updown </p>
-              <button onClick={handlePasswordChange} className="editButton">비밀번호 수정하기</button>
+              <button onClick={handlePasswordChange} className="editButton">로그아웃 하기</button>
             </div>
           </div>
 
-          <div className='container-sub'> </div>
+          <div className='container-sub'>
+          <p> 총 사용 용량 및 결제 내역 </p>  
+          </div>
           </div>
       ): (
         <div className='login-page'>

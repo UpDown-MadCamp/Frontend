@@ -35,3 +35,26 @@ const login = async (username_c, password) => {
 };
 
 export { login };
+
+
+const download = async (private_key) => {
+  
+  try {
+    const response = await api.post('/download', { private_key: private_key });
+    if (response.status === 200){
+    console.log('다운로드 성공:', response.data);
+    return response;
+    } else {
+      //setIsLoggedIn(false);
+      console.log( response.data);
+      return response;
+    }
+  } catch (error) {
+    // 오류 처리
+    console.error('다운로드 오류:', error);
+    throw error;
+  }
+};
+
+export { download };
+
