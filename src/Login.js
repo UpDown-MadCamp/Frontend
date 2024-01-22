@@ -17,10 +17,10 @@ function Login() {
     //const { name, value } = event.target;
     //setCredentials({ ...credentials, [name]: value });
   //};
-  const files_local = [
-    { name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }
-  ];
-  sessionStorage.setItem('files', JSON.stringify(files_local));
+  // const files_local = [
+  //   { name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }
+  // ];
+  // sessionStorage.setItem('files', JSON.stringify(files_local));
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -73,7 +73,7 @@ function Login() {
 
   const calculateFileTypeRatio = (files) => {
     const fileTypeCounts = files.reduce((counts, file) => {
-      const extension = file.name.split('.').pop().toLowerCase();
+      const extension = file.filename.split('.').pop().toLowerCase();
       counts[extension] = (counts[extension] || 0) + 1;
       return counts;
     }, {});

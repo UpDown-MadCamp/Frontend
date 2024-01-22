@@ -6,7 +6,7 @@ const FileList = ({ files, totalSize }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', key: '', size: '' });
   const [currentPage, setCurrentPage] = useState(1);
-  const filesPerPage = 20;
+  const filesPerPage = 10;
 
   const handleOpenModal = (file) => () => {
     setFormData(file);
@@ -29,7 +29,7 @@ const FileList = ({ files, totalSize }) => {
 
   const handleNextClick = () => {
     setCurrentPage(current => Math.min(current + 1, totalPages));
-    window.location.reload();
+    //window.location.reload();
   };
 
   return (
@@ -37,7 +37,7 @@ const FileList = ({ files, totalSize }) => {
       <div className={styles.header}>My uploaded files</div>
       {currentFiles.map((file, index) => (
         <div key={index} className={styles.fileItem} onClick={handleOpenModal(file)}>
-          <span className={styles.fileName}>{firstFileIndex + index + 1}. {file.name}</span>
+          <span className={styles.fileName}>{firstFileIndex + index + 1}. {file.filename}</span>
           <span className={styles.fileKey}>{file.key}</span>
           <span className={styles.fileSize}>{file.size}</span>
         </div>
