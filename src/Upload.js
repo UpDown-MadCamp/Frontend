@@ -9,17 +9,9 @@ import {setFiles} from './api';
 function Upload() {
   const [animate, setAnimate] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-<<<<<<< HEAD
   
   //const files_local = [{ name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }];
   //sessionStorage.setItem('files', JSON.stringify(files_local));
-=======
-  // const files_local = [
-  //   { name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }
-  // ];
-
-  // sessionStorage.setItem('files', JSON.stringify(files_local));
->>>>>>> b2e63cac2fc20c4ba67ad392c37dda3266b1960a
   
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
