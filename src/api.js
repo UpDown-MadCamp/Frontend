@@ -59,6 +59,7 @@ const download = async (private_key) => {
 export { download };
 
 const email = sessionStorage.getItem('email');
+
 //const files_local = [  { name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }];
 
 const setFiles = async () => {
@@ -72,13 +73,18 @@ const setFiles = async () => {
     if (response.status === 200) {
       sessionStorage.removeItem('files');
       sessionStorage.setItem('files', JSON.stringify(response.data.files));
-      
       window.location.reload();
     } else {
       sessionStorage.removeItem('files');
       //sessionStorage.setItem('files', JSON.stringify(files_local));
       window.location.reload();
+
     }
+    // else {
+    //   sessionStorage.removeItem('files');
+    //   sessionStorage.setItem('files', JSON.stringify(files_local));
+    //   window.location.reload();
+    // }
 
   } catch (error) {
     alert('업로드 목록 불러오기 실패');

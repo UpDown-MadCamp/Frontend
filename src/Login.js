@@ -17,9 +17,10 @@ function Login() {
     //const { name, value } = event.target;
     //setCredentials({ ...credentials, [name]: value });
   //};
-  
+
   //const files_local = [{ name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }];
   //sessionStorage.setItem('files', JSON.stringify(files_local));
+
 
   const handleOpenModal = () => {
     setIsModalOpen(true);

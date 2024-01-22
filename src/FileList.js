@@ -29,19 +29,14 @@ const FileList = ({ files, totalSize }) => {
 
   const handleNextClick = () => {
     setCurrentPage(current => Math.min(current + 1, totalPages));
-  };
-  const truncate = (str, num) => {
-    if (str.length <= num) {
-      return str;
-    }
-    return str.slice(0, num) + '...';
+    window.location.reload();
   };
   return (
     <div className={styles.container}>
       <div className={styles.header}>My uploaded files</div>
       {currentFiles.map((file, index) => (
         <div key={index} className={styles.fileItem} onClick={handleOpenModal(file)}>
-          <span className={styles.fileName}>{firstFileIndex + index + 1}. {truncate(String(file.filename), 15)}</span>
+          <span className={styles.fileName}>{firstFileIndex + index + 1}. {file.name}</span>
           <span className={styles.fileKey}>{file.key}</span>
           <span className={styles.fileSize}>{(file.size/1024).toFixed(2)}KB</span>
         </div>
