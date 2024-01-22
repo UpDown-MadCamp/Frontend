@@ -39,7 +39,7 @@ function App() {
           <Route path="/signin" element={<SignInModal />}/>
         </Routes>
         <footer className="footer">
-          <div className="footer-text">© 2024 Your Company</div>
+          <div className="footer-text">© 2024 Updown your files now</div>
         </footer>
       </div>
       </AuthProvider>

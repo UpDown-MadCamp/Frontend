@@ -17,10 +17,9 @@ function Login() {
     //const { name, value } = event.target;
     //setCredentials({ ...credentials, [name]: value });
   //};
-  const files_local = [
-    { name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }
-  ];
-  sessionStorage.setItem('files', JSON.stringify(files_local));
+  
+  //const files_local = [{ name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }];
+  //sessionStorage.setItem('files', JSON.stringify(files_local));
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -44,10 +43,9 @@ function Login() {
         sessionStorage.setItem('user', JSON.stringify(userData.data.user));
         sessionStorage.setItem('islogged', true)
         setFiles();
-        window.location.reload();
-
       } else {
         sessionStorage.setItem('islogged', false)
+        sessionStorage.removeItem('files');
         window.location.reload();
       }
       console.log('로그인 데이터:', userData);
@@ -66,14 +64,14 @@ function Login() {
 
   const calculateTotalSize = (files) => {
     return files.reduce((total, file) => {
-      const size = parseInt(file.size, 10);
+      const size = (parseFloat((file.size/1024).toFixed(2))/1000);
       return total + size;
     }, 0);
   };
 
   const calculateFileTypeRatio = (files) => {
     const fileTypeCounts = files.reduce((counts, file) => {
-      const extension = file.name.split('.').pop().toLowerCase();
+      const extension = file.filename.split('.').pop().toLowerCase();
       counts[extension] = (counts[extension] || 0) + 1;
       return counts;
     }, {});
@@ -125,7 +123,7 @@ function Login() {
 
           <div className='container-sub'>
           <div className='text-column'> 
-          <p> totalSize : {(totalSize/1024).toFixed(2)} KB </p>
+          <p> totalSize : {totalSize.toFixed(0)} KB </p>
           <p> {estimatedCost} 요금제 </p>  
           </div>
           <FileTypeRatioTable fileTypeRatio={fileTypeRatio} />

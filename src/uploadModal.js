@@ -19,9 +19,10 @@ function UploadModal({ formData, onClose }) {
   return (
     <div className="modal-backdrop">
       <div className="modal-content">
-        <h4>{formData.name}</h4>
+        <h4>{formData.filename}</h4>
         <h5>size : {formData.size}B</h5>
         <h5>key : {formData.key}</h5>
+        <h5>extension : {formData.filename.split('.').pop().toLowerCase()}</h5>
         <form onSubmit={handleSubmit}>      
           <div className="modal-actions">
             <button type="button" onClick={onClose}>취소</button>
