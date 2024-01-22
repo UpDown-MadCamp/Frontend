@@ -41,9 +41,8 @@ function Upload() {
           'Content-Type': 'multipart/form-data',
         },
       });
-
       if (response.status === 201) {
-        alert(response.data.message);
+        alert(response.data.fileKey+"로 저장됐습니다");
         console.log('서버 응답:', response.data);
         setFiles();
       } else {
@@ -57,7 +56,6 @@ function Upload() {
     }
   };
   
-
   const setFiles = async () => {
     try{
       const response = await axios.post('http://localhost:5000/files/find',{email : email}, {
@@ -100,7 +98,7 @@ function Upload() {
               {!selectedFile? (<label htmlFor="fileInput" className="fileInputLabel">
               파일 선택하기
               </label>):(<label htmlFor="fileInput" className="fileInputLabel_end">
-              {selectedFile.filename}
+              {selectedFile.name}______{(selectedFile.size/1024).toFixed(2)}KB
               </label>)}
               
               <button onClick={uploadFile} >upload</button>

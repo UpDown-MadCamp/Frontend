@@ -160,3 +160,12 @@
   .editButton:hover {
     background-color: #0056b3;
   }
+
+  .text-column {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding :10px 20px;
+    font-size: 2.3ch;
+    font-weight: 600;
+  }

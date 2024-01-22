@@ -22,7 +22,7 @@ function App() {
           <div className ="nav-button-container"> 
           <Link to="/upload" className="nav-button">upload</Link>
           <Link to="/download" className="nav-button">download</Link>
-          {islogged? (<Link to="/login" className="login-button">logout</Link>) : (<Link to="/login" className="login-button">login</Link>)}
+          {islogged? (<Link to="/login" className="login-button">My page</Link>) : (<Link to="/login" className="login-button">login</Link>)}
           
           </div>
         </nav>

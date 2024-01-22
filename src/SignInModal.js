@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SignInModal.css';
+import axios from 'axios';
 
 function SignInModal({ onClose }) {
   const [formData, setFormData] = useState({
@@ -23,6 +24,25 @@ function SignInModal({ onClose }) {
     // Here you would handle the sign-in logic, possibly sending data to a server
     console.log('Form data submitted:', formData);
     onClose(); // Close the modal on successful submission
+  };
+
+  const signIn = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/auth/signup', {username:formData.username, password:formData.password, email:formData.email}, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (response.status === 201) {
+        console.log('success');
+      } else {
+        console.log('failed')
+      }
+    } catch (error) {
+      console.error('로그인 실패:', error);
+    }
   };
 
   return (
@@ -64,7 +84,7 @@ function SignInModal({ onClose }) {
           />
           <div className="modal-actions">
             <button type="button" onClick={onClose}>Cancel</button>
-            <button type="submit">Sign In</button>
+            <button type="submit" onClick={signIn}>Sign In</button>
           </div>
         </form>
       </div>

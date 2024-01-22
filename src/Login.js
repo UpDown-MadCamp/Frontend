@@ -5,16 +5,21 @@ import SignInModal from './SignInModal';
 import axios from 'axios';
 import { login } from './api';
 import { useAuth } from './AuthContext';
+import FileTypeRatioTable from './FileTypeRatioTable';
+
 
 function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username_c, setusername_c] = useState('');
   const [password, setPassword] = useState('');
-
   //const handleInputChange = (event) => {
     //const { name, value } = event.target;
     //setCredentials({ ...credentials, [name]: value });
   //};
+  const files_local = [
+    { name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }
+  ];
+  sessionStorage.setItem('files', JSON.stringify(files_local));
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -55,9 +60,50 @@ function Login() {
     sessionStorage.removeItem('islogged');
     window.location.reload();
   };
+
+
+  const calculateTotalSize = (files) => {
+    return files.reduce((total, file) => {
+      const size = parseInt(file.size, 10);
+      return total + size;
+    }, 0);
+  };
+
+  const calculateFileTypeRatio = (files) => {
+    const fileTypeCounts = files.reduce((counts, file) => {
+      const extension = file.name.split('.').pop().toLowerCase();
+      counts[extension] = (counts[extension] || 0) + 1;
+      return counts;
+    }, {});
+
+    const totalFiles = files.length;
+    return Object.entries(fileTypeCounts).reduce((ratios, [type, count]) => {
+      ratios[type] = (count / totalFiles) * 100;
+      return ratios;
+    }, {});
+  };
+  const calculateEstimatedCost = (files) => {
+    return "Basic: 0원";
+  };
+  const parseFileSize = (size) => {
+    const sizeValue = parseInt(size, 10);
+    return isNaN(sizeValue) ? 0 : sizeValue * 1024; // KB 단위를 바이트로 변환
+  };
   const islogged = sessionStorage.getItem('islogged');
   const username = sessionStorage.getItem('username');
   const email = sessionStorage.getItem('email');
+
+  const files = JSON.parse(sessionStorage.getItem('files') || '[]').map(file => ({
+    ...file,
+    size: parseFileSize(file.size)
+  }));
+
+  const totalSize = calculateTotalSize(files);
+  const fileTypeRatio = calculateFileTypeRatio(files);
+  const estimatedCost = calculateEstimatedCost(files);
+
+  console.log(fileTypeRatio);
+
   return (
     <div>
       
@@ -76,7 +122,11 @@ function Login() {
           </div>
 
           <div className='container-sub'>
-          <p> 총 사용 용량 및 결제 내역 </p>  
+          <FileTypeRatioTable fileTypeRatio={fileTypeRatio} />
+          <div className='text-column'> 
+          <p> totalSize : {totalSize} </p>
+          <p> {estimatedCost} </p>  
+          </div>
           </div>
           </div>
       ): (
