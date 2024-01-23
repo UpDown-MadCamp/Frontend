@@ -8,6 +8,7 @@ import { setFiles } from './api';
 import { useAuth } from './AuthContext';
 import FileTypeRatioTable from './FileTypeRatioTable';
 import updownGif from './updown.gif';
+import GoogleLoginButton from './GoogleLoginButton';
 
 function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -159,8 +160,9 @@ function Login() {
             />
     
             <button type="submit">Login</button>
+            <GoogleLoginButton />
           </form>
-    
+          
           <button onClick={handleOpenModal} className = "signButton">If not resgistered, Sign In</button>
           {isModalOpen && <SignInModal onClose={handleCloseModal} />}
           </div>
