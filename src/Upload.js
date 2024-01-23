@@ -44,6 +44,7 @@ function Upload() {
 
   const islogged = sessionStorage.getItem('islogged')
   const email = sessionStorage.getItem('email');
+  const totalSize = sessionStorage.getItem('totalSize');
 
   const handleSearchChange = (event) => {
     setCurrentPage(1);
@@ -114,7 +115,7 @@ function Upload() {
               </div>
               </div>
               </div>
-           <FileList files={filteredFiles} currentPage_r = {currentPage_r} totalSize="total 300 MB / 1GB" />
+           <FileList files={filteredFiles} currentPage_r = {currentPage_r} totalSize= {totalSize} />
            </div>
         ) : (
 

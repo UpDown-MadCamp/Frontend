@@ -18,7 +18,7 @@ function App() {
     <AuthProvider>
       <div className="App">
         <nav className="navbar">
-          <Link to="/" className="nav-logo" >Upload</Link>
+          <Link to="/" className="nav-logo" >UpDown</Link>
           <div className ="nav-button-container"> 
           <Link to="/upload" className="nav-button">upload</Link>
           <Link to="/download" className="nav-button">download</Link>

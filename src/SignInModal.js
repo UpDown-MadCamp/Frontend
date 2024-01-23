@@ -34,14 +34,16 @@ function SignInModal({ onClose }) {
           'Content-Type': 'application/json',
         },
       });
-      
       if (response.status === 201) {
+        alert('회원가입 성공!');
         console.log('success');
+        onClose();
       } else {
         alert('이미 존재하는 아이디입니다');
         console.log('failed');
       }
     } catch (error) {
+      alert('이미 존재하는 아이디입니다');
       console.error('로그인 실패:', error);
     }
   };

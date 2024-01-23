@@ -47,7 +47,7 @@ const FileList = ({ files, totalSize, currentPage_r }) => {
           <span className={styles.fileSize}>{(file.size/1024).toFixed(2)}KB</span>
         </div>
       ))}
-      <div className={styles.totalSize}>{totalSize}</div>
+      <div className={styles.totalSize}>{totalSize}KB /5GB</div>
       <div className={styles.pagination}>
         <button onClick={handlePrevClick} disabled={currentPage === 1}>&lt;</button>
         <span> Page {currentPage} of {totalPages} </span>

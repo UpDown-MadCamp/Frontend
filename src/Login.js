@@ -88,6 +88,7 @@ function Login() {
   const calculateEstimatedCost = (files) => {
     return "Basic: 0원";
   };
+
   const parseFileSize = (size) => {
     const sizeValue = parseInt(size, 10);
     return isNaN(sizeValue) ? 0 : sizeValue * 1024; // KB 단위를 바이트로 변환
@@ -102,6 +103,7 @@ function Login() {
   }));
 
   const totalSize = calculateTotalSize(files);
+  sessionStorage.setItem('totalSize',totalSize);
   const fileTypeRatio = calculateFileTypeRatio(files);
   const estimatedCost = calculateEstimatedCost(files);
 

@@ -41,7 +41,7 @@ function SearchBar() {
         window.URL.revokeObjectURL(downloadUrl);
 
     } catch(error) {
-        alert('incorrect key');
+        alert('잘못된 키입니다');
         console.error(error);
     }
 };

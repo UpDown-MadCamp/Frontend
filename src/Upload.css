@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: right;
   height: 100vh;
-
+  margin-top:3%;
   }
 
   .content-column-upload {

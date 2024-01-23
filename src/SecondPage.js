@@ -24,7 +24,7 @@ const SecondPage = () => {
     <div className="second-page">
       <h1>로그인 없이도 파일 공유 가능 ~ </h1>
       <div style={{ textAlign: 'center' }}>
-      <img src={updownGif} alt="GIF" style={{ maxWidth: '100%', height: 'auto' }} />
+      <img src={updownGif} alt="GIF" style={{ maxWidth: '80%', height: 'auto', margin: "10px"}} />
     </div>
     </div>
   );
