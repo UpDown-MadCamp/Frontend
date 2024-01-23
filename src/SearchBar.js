@@ -13,38 +13,36 @@ function SearchBar() {
   };
   const download_file = async () => {
     try {
-    const response = await axios.get('http://localhost:5000/files/download/' + private_key, {
-      responseType: 'blob'  // 중요: 파일 데이터를 blob으로 받기
-  });
 
-  // Content-Disposition 헤더에서 파일명 추출
-  const contentDisposition = response.headers['content-disposition'];
-  let filename = "downloaded-file";
-  if (contentDisposition) {
-      const match = contentDisposition.match(/filename="?(.?)"?/);
-      if (match) filename = match[1];
-  }
+        const response = await axios.get('http://localhost:5000/files/download/' + private_key, {
+            responseType: 'blob'
+        });
 
-    const reader = new FileReader();
-    
-    const blob = new Blob([response.data]);
-    const link = document.createElement("a");
+        // Content-Disposition 헤더에서 파일명 추출
+        const contentDisposition = response.headers['content-disposition'];
+        let filename = "downloaded-file"; // 기본 파일명
+        if (contentDisposition) {
+            const filenameMatch = contentDisposition.match(/filename="?(.+?)"?(;|$)/);
+            if (filenameMatch && filenameMatch[1]) {
+                filename = filenameMatch[1];
+            }
+        }
 
-    //reader.readAsArrayBuffer(blob)
+        const blob = new Blob([response.data]);
+        const downloadUrl = window.URL.createObjectURL(blob);
 
-    link.href = window.URL.createObjectURL(blob);
-    link.download = filename;
-    document.body.appendChild(link); // 링크를 DOM에 추가
-    link.click();
-    document.body.removeChild(link); // 다운로드 후 링크 제거
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
-    // URL 객체 정리
-    window.URL.revokeObjectURL(link.href);
-
-  } catch(error) {
-    console.log(error);
-  }
-  }
+        window.URL.revokeObjectURL(downloadUrl);
+    } catch(error) {
+        console.error(error);
+    }
+};
 
   return (
     <div className="search-bar-container">
