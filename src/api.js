@@ -64,11 +64,10 @@ const email = sessionStorage.getItem('email');
 
 const setFiles = async () => {
   try{
-    const response = await api.post('/files/find',{email : email}, {
+    const response = await api.post('/files/find', {email : email}, {
       headers: {
         'Content-Type': 'application/json',
-      },
-      
+      },   
     });
     if (response.status === 200) {
       sessionStorage.removeItem('files');

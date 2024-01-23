@@ -9,26 +9,37 @@ function SearchBar() {
     setprivate_key(event.target.value);
     console.log(private_key);
   };
-  const download_file = () => {
+  const download_file = async () => {
     try {
-    const response = axios.get('http://localhost:5000/files/download/'+private_key, {
-      //params: { key: private_key }
-    });
+        const response = await axios.get('http://localhost:5000/files/download/' + private_key, {
+            responseType: 'blob'
+        });
 
-    if (response.status === 404) {
-      alert(response.data.message);
-      console.log('');
-    } else if (response.status === 200){
-      alert('파일을 다운로드 받으세요');
-      console.log(response.data);
+        // Content-Disposition 헤더에서 파일명 추출
+        const contentDisposition = response.headers['content-disposition'];
+        let filename = "downloaded-file"; // 기본 파일명
+        if (contentDisposition) {
+            const filenameMatch = contentDisposition.match(/filename="?(.+?)"?(;|$)/);
+            if (filenameMatch && filenameMatch[1]) {
+                filename = filenameMatch[1];
+            }
+        }
 
-    } else {
-      console.log(Object.keys(response));
+        const blob = new Blob([response.data]);
+        const downloadUrl = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        window.URL.revokeObjectURL(downloadUrl);
+    } catch(error) {
+        console.error(error);
     }
-  } catch(error) {
-    console.log(error);
-  }
-  }
+};
 
   return (
     <div className="search-bar-container">
