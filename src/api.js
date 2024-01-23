@@ -64,7 +64,7 @@ const email = sessionStorage.getItem('email');
 
 const setFiles = async () => {
   try{
-    const response = await api.post('/files/find', {email : email}, {
+    const response = await api.post('/files/find', {email : sessionStorage.getItem('email')}, {
       headers: {
         'Content-Type': 'application/json',
       },   

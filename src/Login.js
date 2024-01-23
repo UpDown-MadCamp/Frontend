@@ -39,12 +39,13 @@ function Login() {
       
       if (userData.status === 200) {
         console.log(userData.data.user);
-        sessionStorage.setItem('email',userData.data.user.email);
+        sessionStorage.setItem('email', userData.data.user.email);
         sessionStorage.setItem('username', userData.data.user.username);
         sessionStorage.setItem('user', JSON.stringify(userData.data.user));
         sessionStorage.setItem('islogged', true)
         setFiles();
       } else {
+        alert('비밀번호 또는 유저네임이 잘못됐습니다');
         sessionStorage.setItem('islogged', false)
         sessionStorage.removeItem('files');
         window.location.reload();
@@ -52,6 +53,7 @@ function Login() {
       console.log('로그인 데이터:', userData);
       
     } catch (error) {
+      alert('비밀번호 또는 유저네임이 잘못됐습니다');
       console.error('로그인 실패:', error);
     }
   };
