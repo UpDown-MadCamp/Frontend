@@ -14,6 +14,8 @@ function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username_c, setusername_c] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+
   //const handleInputChange = (event) => {
     //const { name, value } = event.target;
     //setCredentials({ ...credentials, [name]: value });
@@ -65,7 +67,6 @@ function Login() {
     window.location.reload();
   };
 
-
   const calculateTotalSize = (files) => {
     return files.reduce((total, file) => {
       const size = (parseFloat((file.size/1024).toFixed(2))/1000);
@@ -98,6 +99,21 @@ function Login() {
   const username = sessionStorage.getItem('username');
   const email = sessionStorage.getItem('email');
 
+  // 메일 전송 버튼 클릭 핸들러
+  const handleMailSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/mail/send/', { email });
+      setMessage(response.data.message);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      if (error.response) {
+          console.error('Server Response:', error.response.data);
+      }
+      setMessage('Failed to send email.');
+  }
+  };
+
   const files = JSON.parse(sessionStorage.getItem('files') || '[]').map(file => ({
     ...file,
     size: parseFileSize(file.size)
@@ -124,6 +140,7 @@ function Login() {
             </div>
             <div className="section">
               <p className="welcomeMessage">welcome to updown </p>
+              <button onClick={handleMailSubmit} className="mailButton">메일 보내기</button>
               <button onClick={handlePasswordChange} className="editButton">로그아웃 하기</button>
             </div>
           </div>

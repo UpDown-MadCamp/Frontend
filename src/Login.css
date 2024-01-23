@@ -143,6 +143,19 @@
     margin: 0;
     color: #4a4a4a;
   }
+
+  .mailButton {
+    margin-top: 40px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #0084ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    transition: background-color 0.2s ease-in-out;
+  }
   
   .editButton {
     margin-top: 40px;
