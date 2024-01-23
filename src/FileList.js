@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './FileList.module.css';
 import UploadModal from './uploadModal';
 
-const FileList = ({ files, totalSize }) => {
+const FileList = ({ files, totalSize, currentPage_r }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', key: '', size: '' });
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,6 +11,7 @@ const FileList = ({ files, totalSize }) => {
   const handleOpenModal = (file) => () => {
     setFormData(file);
     setIsModalOpen(true);
+
   };
 
   const handleCloseModal = () => {

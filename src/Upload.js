@@ -12,6 +12,7 @@ function Upload() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredFiles, setFilteredFiles] = useState([]);
   const files = JSON.parse(sessionStorage.getItem('files') || '[]');
+  const [currentPage_r, setCurrentPage] = useState(1);
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -30,6 +31,7 @@ function Upload() {
   const email = sessionStorage.getItem('email');
 
   const handleSearchChange = (event) => {
+    setCurrentPage(1);
     setSearchTerm(event.target.value);
   };
 
@@ -85,7 +87,7 @@ function Upload() {
               </label>):(<label htmlFor="fileInput" className="fileInputLabel_end">
               {selectedFile.name}______{(selectedFile.size/1024).toFixed(2)}KB
               </label>)}
-              <button onClick={uploadFile} >upload</button>
+              <button onClick={uploadFile} >upload </button>
               <div>
                 <input
                   type="text"
@@ -97,7 +99,7 @@ function Upload() {
               </div>
               </div>
               </div>
-           <FileList files={filteredFiles} totalSize="total 300 MB / 1GB" />
+           <FileList files={filteredFiles} currentPage_r = {currentPage_r} totalSize="total 300 MB / 1GB" />
            </div>
         ) : (
 
