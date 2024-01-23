@@ -114,7 +114,7 @@
   font-size: 2.5ch;
   height: 12%;
   width: 12%;
-  margin-left: 58%;
+  margin-left: 2%;
 }
 
 .upload-content button:hover {
@@ -162,3 +162,20 @@
   transition: background-color 0.2s;
   width:13%;
 }
+
+.search-input {
+  width: 250%;
+  border: none;
+  border-bottom: 2px solid #333; /* Color of the underline */
+  padding: 3.5px 10px; /* Spacing inside the search bar */
+  font-size:16px; /* Size of the input text */
+  color: #333; /* Text color */
+  background-color: transparent; /* Background color */
+  margin : 5px 20px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-bottom-color: #ffffff; /* Color of the underline on focus */
+}
+

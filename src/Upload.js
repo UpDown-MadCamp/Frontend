@@ -9,10 +9,9 @@ import {setFiles} from './api';
 function Upload() {
   const [animate, setAnimate] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  
-  //const files_local = [{ name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }];
-  //sessionStorage.setItem('files', JSON.stringify(files_local));
-  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredFiles, setFilteredFiles] = useState([]);
+  const files = JSON.parse(sessionStorage.getItem('files') || '[]');
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -20,10 +19,19 @@ function Upload() {
   useEffect(() => {
     // Start the animation when the component mounts
     setAnimate(true);
-  }, []);
+    const results = files.filter(file =>
+      file.filename.toLowerCase().includes(searchTerm.toLowerCase())||file.key.toLowerCase().includes(searchTerm.toLowerCase()) 
+    );
+    setFilteredFiles(results);
+  }, [searchTerm, files]);
+
 
   const islogged = sessionStorage.getItem('islogged')
   const email = sessionStorage.getItem('email');
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   const uploadFile = async () => {
     if (!selectedFile) {
@@ -56,7 +64,7 @@ function Upload() {
   };
   
 
-  const files = JSON.parse(sessionStorage.getItem('files') || '[]');
+  
 
   return (
     <div className="upload-page">
@@ -70,17 +78,26 @@ function Upload() {
                 <h1>Upload</h1>
               </header>
               <input type="file" id="fileInput" className="fileInput" onChange={handleFileSelect} />
+
               <div className="button-row">
               {!selectedFile? (<label htmlFor="fileInput" className="fileInputLabel">
               파일 선택하기
               </label>):(<label htmlFor="fileInput" className="fileInputLabel_end">
               {selectedFile.name}______{(selectedFile.size/1024).toFixed(2)}KB
               </label>)}
-              
               <button onClick={uploadFile} >upload</button>
+              <div>
+                <input
+                  type="text"
+                  placeholder="파일 검색..."
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className='search-input'
+                />
               </div>
               </div>
-           <FileList files={files} totalSize="total 300 MB / 1GB" />
+              </div>
+           <FileList files={filteredFiles} totalSize="total 300 MB / 1GB" />
            </div>
         ) : (
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
-import axios from 'axios';
+import axios, { formToJSON } from 'axios';
+import Blob from 'blob';
+//import FileReader from 'filereader';
 
 function SearchBar() {
   const [private_key, setprivate_key] = useState('');
@@ -9,22 +11,36 @@ function SearchBar() {
     setprivate_key(event.target.value);
     console.log(private_key);
   };
-  const download_file = () => {
+  const download_file = async () => {
     try {
-    const response = axios.get('http://localhost:5000/files/download/'+private_key, {
-      //params: { key: private_key }
-    });
+    const response = await axios.get('http://localhost:5000/files/download/' + private_key, {
+      responseType: 'blob'  // 중요: 파일 데이터를 blob으로 받기
+  });
 
-    if (response.status === 404) {
-      alert(response.data.message);
-      console.log('');
-    } else if (response.status === 200){
-      alert('파일을 다운로드 받으세요');
-      console.log(response.data);
+  // Content-Disposition 헤더에서 파일명 추출
+  const contentDisposition = response.headers['content-disposition'];
+  let filename = "downloaded-file";
+  if (contentDisposition) {
+      const match = contentDisposition.match(/filename="?(.?)"?/);
+      if (match) filename = match[1];
+  }
 
-    } else {
-      console.log(Object.keys(response));
-    }
+    const reader = new FileReader();
+    
+    const blob = new Blob([response.data]);
+    const link = document.createElement("a");
+
+    //reader.readAsArrayBuffer(blob)
+
+    link.href = window.URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link); // 링크를 DOM에 추가
+    link.click();
+    document.body.removeChild(link); // 다운로드 후 링크 제거
+
+    // URL 객체 정리
+    window.URL.revokeObjectURL(link.href);
+
   } catch(error) {
     console.log(error);
   }
@@ -36,7 +52,7 @@ function SearchBar() {
       <input
         type="text"
         placeholder="Search..."
-        className="search-input"
+        className="search-input-down"
         //value={private_key}
         onKeyUp={handleSearch}
       />
