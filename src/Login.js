@@ -7,7 +7,7 @@ import { login } from './api';
 import { setFiles } from './api';
 import { useAuth } from './AuthContext';
 import FileTypeRatioTable from './FileTypeRatioTable';
-
+import updownGif from './updown.gif';
 
 function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -111,6 +111,7 @@ function Login() {
       {islogged ? (
         <div className='login-page'>
             <div className="container">
+            <img src={updownGif} alt="GIF" style={{ maxWidth: '10%', height: '30%', padding:'15px', marginLeft:'10px'}} />
             <div className="section">
               <h1 className="header">mypage</h1>
               <p className="info"><strong>내 이름</strong> {username}</p>

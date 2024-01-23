@@ -4,7 +4,7 @@ import UploadModal from './uploadModal';
 
 const FileList = ({ files, totalSize, currentPage_r }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: '', key: '', size: '' });
+  const [formData, setFormData] = useState({ name: '', key: '', size: ''});
   const [currentPage, setCurrentPage] = useState(1);
   const filesPerPage = 10;
 

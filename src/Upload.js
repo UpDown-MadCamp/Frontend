@@ -20,10 +20,25 @@ function Upload() {
   useEffect(() => {
     // Start the animation when the component mounts
     setAnimate(true);
+    // Function to perform deep comparison of arrays
+    const arraysAreEqual = (array1, array2) => {
+      if (array1.length !== array2.length) return false;
+      for (let i = 0; i < array1.length; i++) {
+        if (array1[i] !== array2[i]) return false;
+      }
+      return true;
+    };
+  
+    // Perform the filtering
     const results = files.filter(file =>
-      file.filename.toLowerCase().includes(searchTerm.toLowerCase())||file.key.toLowerCase().includes(searchTerm.toLowerCase()) 
+      file.filename.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      file.key.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredFiles(results);
+  
+    // Update state only if the results are different
+    if (!arraysAreEqual(results, filteredFiles)) {
+      setFilteredFiles(results);
+    }
   }, [searchTerm, files]);
 
 

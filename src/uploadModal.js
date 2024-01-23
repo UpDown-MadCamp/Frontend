@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SignInModal.css';
 import axios from 'axios';
+import { setFiles } from './api';
 
 function UploadModal({ formData, onClose }) {
 
@@ -12,8 +13,17 @@ function UploadModal({ formData, onClose }) {
 
   }
 
-  const delete_file = () => {
-
+  const delete_file = async () => {
+    console.log(formData.key)
+    try {
+      const response = await axios.delete('http://localhost:5000/files/delete/' + formData.key);
+      setFiles();
+      alert("File deleted successfully");
+      console.log(response.message);
+  } catch (error) {
+      console.error(error);
+      alert("Error deleting the file");
+  }
   }
 
   return (
@@ -26,7 +36,7 @@ function UploadModal({ formData, onClose }) {
         <form onSubmit={handleSubmit}>      
           <div className="modal-actions">
             <button type="button" onClick={onClose}>취소</button>
-            <button type="submit" onClick={delete_file}>삭제</button>
+            <button type="button" onClick={delete_file}>삭제</button>
           </div>
         </form>
       </div>

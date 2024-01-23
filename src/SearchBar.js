@@ -39,7 +39,9 @@ function SearchBar() {
         document.body.removeChild(link);
 
         window.URL.revokeObjectURL(downloadUrl);
+
     } catch(error) {
+        alert('incorrect key');
         console.error(error);
     }
 };
