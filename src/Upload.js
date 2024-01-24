@@ -13,8 +13,17 @@ function Upload() {
   const [filteredFiles, setFilteredFiles] = useState([]);
   const files = JSON.parse(sessionStorage.getItem('files') || '[]');
   const [currentPage_r, setCurrentPage] = useState(1);
+  const [isEnabled, setIsEnabled] = useState(false);
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
+  };
+  const toggleSwitch = () => {
+    if (!isEnabled) {
+      alert("대용량 업로드 모드 15MB + ");
+    } else {
+      alert("저용량 업로드 모드 15MB - ");
+    }
+    setIsEnabled(!isEnabled)
   };
 
   useEffect(() => {
@@ -61,7 +70,11 @@ function Upload() {
     formData.append('email',email);
 
     try {
-      const response = await axios.post('http://localhost:5000/files/upload', formData, {
+      var url = "http://localhost:5000/files/upload";
+      if (isEnabled) {
+        url = "http://localhost:5000/files/uploadGrid";
+      }
+      const response = await axios.post(url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -76,7 +89,7 @@ function Upload() {
         setFiles();
       }
     } catch (error) {
-      alert('업로드 실패');
+      alert('업로드 실패, 파일 용량을 확인해보세요');
       console.error('업로드 실패:', error);
     }
   };
@@ -91,7 +104,7 @@ function Upload() {
 
         {islogged ? (
           <div> 
-             <div className="upload-content">
+             <div className="upload-content" >
               <header className="upload-header">
                 <h1>Upload</h1>
               </header>
@@ -104,6 +117,10 @@ function Upload() {
               {selectedFile.name}______{(selectedFile.size/1024).toFixed(2)}KB
               </label>)}
               <button onClick={uploadFile} >upload </button>
+              <label className="switch">
+              <input type="checkbox" checked={isEnabled} onChange={toggleSwitch} />
+              <span className="slider round"></span>
+            </label>
               <div>
                 <input
                   type="text"

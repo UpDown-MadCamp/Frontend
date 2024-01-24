@@ -62,6 +62,7 @@ const edit_file = async () => {
         <h5>size : {formData.size}B</h5>
         <h5>key : {formData.key}</h5>
         <h5>extension : {formData.filename.split('.').pop().toLowerCase()}</h5>
+        <h5>gridFS : {formData.isGrid? ("true"):("false")}</h5>
         <form onSubmit={handleSubmit}>      
           <div className="modal-actions">
             <button type="button" onClick={edit_file} style={{marginRight:"40%"}}>수정</button>
