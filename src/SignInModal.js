@@ -29,7 +29,7 @@ function SignInModal({ onClose }) {
   const signIn = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/auth/signup', {username:formData.username, password:formData.password, email:formData.email}, {
+      const response = await axios.post('/api/auth/signup', {username:formData.username, password:formData.password, email:formData.email}, {
         headers: {
           'Content-Type': 'application/json',
         },

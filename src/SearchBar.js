@@ -14,7 +14,7 @@ function SearchBar() {
   const download_file = async () => {
     try {
 
-        const response = await axios.get('http://localhost:5000/files/download/' + private_key, {
+        const response = await axios.get('/api/files/download/' + private_key, {
             responseType: 'blob'
         });
 
