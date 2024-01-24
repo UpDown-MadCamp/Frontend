@@ -61,7 +61,7 @@ function Upload() {
     formData.append('email',email);
 
     try {
-      const response = await axios.post('http://localhost:5000/files/upload', formData, {
+      const response = await axios.post('http://localhost:5000/files/uploadGrid', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
