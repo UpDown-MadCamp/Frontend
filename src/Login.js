@@ -15,6 +15,8 @@ function Login() {
   const [username_c, setusername_c] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [newUsername, setNewUsername] = useState('');
 
   //const handleInputChange = (event) => {
     //const { name, value } = event.target;
@@ -99,20 +101,26 @@ function Login() {
   const username = sessionStorage.getItem('username');
   const email = sessionStorage.getItem('email');
 
-  // // 내 정보 수정 클릭 핸들러
-  // const handleEditSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post('http://localhost:5000/mail/send/', { email });
-  //     setMessage(response.data.message);
-  //   } catch (error) {
-  //     console.error('Error sending email:', error);
-  //     if (error.response) {
-  //         console.error('Server Response:', error.response.data);
-  //     }
-  //     setMessage('Failed to send email.');
-  // }
-  // };
+  // 내 정보 수정 클릭 핸들러
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        // 현재 로그인된 사용자의 이메일을 사용하여 요청을 보냅니다.
+        const response = await axios.put('http://localhost:5000/auth/edit', {
+            email: email, // 현재 로그인된 사용자의 이메일
+            newUsername: newUsername // 새로운 사용자 이름
+        });
+        console.log(response.data.message);
+        setIsEditing(false);
+        // 페이지 리로드 또는 상태 업데이트
+        // 예를 들어, 세션 스토리지의 username을 업데이트하고, 화면을 새로고침합니다.
+        sessionStorage.setItem('username', newUsername);
+        window.location.reload();
+    } catch (error) {
+        console.error('Error updating user:', error);
+        alert('사용자 정보를 수정하는 데 실패했습니다.');
+    }
+  };
 
   // 메일 전송 버튼 클릭 핸들러
   const handleMailSubmit = async (e) => {
@@ -154,8 +162,26 @@ function Login() {
               <p className="info"><strong>내 이메일</strong> {email}</p>
             </div>
             <div className="section">
+                        {isEditing ? (
+                            <form onSubmit={handleEditSubmit}>
+                                <input
+                                    type="text"
+                                    value={newUsername}
+                                    onChange={(e) => setNewUsername(e.target.value)}
+                                    required
+                                />
+                                <button type="submit">저장하기</button>
+                            </form>
+                        ) : (
+                            <>
+                                <p className="info"><strong>내 이름</strong> {username}</p>
+                                <button onClick={() => setIsEditing(true)} className="editButton">내 정보 수정하기</button>
+                            </>
+                        )}
+                    </div>
+            <div className="section">
               <p className="welcomeMessage">welcome to updown </p>
-              {/* <button onClick={handleEditSubmit} className="editButton">내 정보 수정하기</button> */}
+
               <button onClick={handleMailSubmit} className="mailButton">메일 보내기</button>
               <button onClick={handlePasswordChange} className="editButton">로그아웃 하기</button>
             </div>

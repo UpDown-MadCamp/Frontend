@@ -75,6 +75,7 @@ function Upload() {
         url = "http://localhost:5000/files/uploadGrid";
       }
       const response = await axios.post(url, formData, {
+
         headers: {
           'Content-Type': 'multipart/form-data',
         },
