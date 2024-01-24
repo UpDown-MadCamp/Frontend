@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { useAuth } from './AuthContext';
 
-
-
 // Axios 인스턴스 생성
 const api = axios.create({
   baseURL: 'http://localhost:5000', // API의 기본 URL을 설정
