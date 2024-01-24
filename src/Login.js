@@ -99,6 +99,21 @@ function Login() {
   const username = sessionStorage.getItem('username');
   const email = sessionStorage.getItem('email');
 
+  // // 내 정보 수정 클릭 핸들러
+  // const handleEditSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post('http://localhost:5000/mail/send/', { email });
+  //     setMessage(response.data.message);
+  //   } catch (error) {
+  //     console.error('Error sending email:', error);
+  //     if (error.response) {
+  //         console.error('Server Response:', error.response.data);
+  //     }
+  //     setMessage('Failed to send email.');
+  // }
+  // };
+
   // 메일 전송 버튼 클릭 핸들러
   const handleMailSubmit = async (e) => {
     e.preventDefault();
@@ -140,6 +155,7 @@ function Login() {
             </div>
             <div className="section">
               <p className="welcomeMessage">welcome to updown </p>
+              {/* <button onClick={handleEditSubmit} className="editButton">내 정보 수정하기</button> */}
               <button onClick={handleMailSubmit} className="mailButton">메일 보내기</button>
               <button onClick={handlePasswordChange} className="editButton">로그아웃 하기</button>
             </div>

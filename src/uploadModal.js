@@ -39,18 +39,21 @@ function UploadModal({ formData, onClose }) {
 const edit_file = async () => {
     console.log(formData.key)
     if (filename === formData.filename) {
-      alert('파일 제목을 눌러 수정해주세요');
+        alert('파일 제목을 눌러 수정해주세요');
+        return;
     }
+
     try {
-      //const response = await axios.delete('http://localhost:5000/files/edit/' + formData.key);
-
-      //console.log(response.message);
-  } catch (error) {
-      //console.error(error);
-      alert("Error deleting the file");
-  }
-  }
-
+        const response = await axios.put('http://localhost:5000/files/edit/' + formData.key, {
+            newFilename: filename
+        });
+        setFiles();
+        console.log(response.data.message);
+    } catch (error) {
+        console.error(error);
+        alert("Error editing the file");
+    }
+}
 
   return (
     <div className="modal-backdrop">
