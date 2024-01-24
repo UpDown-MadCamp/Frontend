@@ -25,7 +25,7 @@ function Login() {
 
   //const files_local = [{ name: 'file_name1.pdf', size: '15KB', key:'failed to get upload files table' }];
   //sessionStorage.setItem('files', JSON.stringify(files_local));
-
+  
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -127,13 +127,14 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/mail/send/', { email });
-      setMessage(response.data.message);
+      console.log(response);
+      alert(response.data);
     } catch (error) {
       console.error('Error sending email:', error);
       if (error.response) {
           console.error('Server Response:', error.response.data);
       }
-      setMessage('Failed to send email.');
+      alert('Failed to send email.');
   }
   };
 
@@ -155,36 +156,37 @@ function Login() {
       {islogged ? (
         <div className='login-page'>
             <div className="container">
-            <img src={updownGif} alt="GIF" style={{ maxWidth: '10%', height: '30%', padding:'15px', marginLeft:'10px'}} />
+            <img src={updownGif} alt="GIF" style={{ maxWidth: '10%', height: '30%', marginLeft:'30px', margin:'3% 5px'}} />
             <div className="section">
               <h1 className="header">mypage</h1>
               <p className="info"><strong>내 이름</strong> {username}</p>
               <p className="info"><strong>내 이메일</strong> {email}</p>
             </div>
+            <div className="section_text">
+              <p className="welcomeMessage">welcome to updown </p>
+            </div>
             <div className="section">
                         {isEditing ? (
+                          <div className='section_text'>
                             <form onSubmit={handleEditSubmit}>
                                 <input
                                     type="text"
                                     value={newUsername}
                                     onChange={(e) => setNewUsername(e.target.value)}
+                                    className='user-input'
                                     required
                                 />
-                                <button type="submit">저장하기</button>
+                                <button type="submit" className='userEditButton'>저장하기</button>
                             </form>
+                            </div>
                         ) : (
                             <>
-                                <p className="info"><strong>내 이름</strong> {username}</p>
-                                <button onClick={() => setIsEditing(true)} className="editButton">내 정보 수정하기</button>
+                            <button onClick={handlePasswordChange} className="editButton">로그아웃 하기</button>
+                                <button onClick={() => setIsEditing(true)} className="userEditButton">내 정보 수정하기</button>
+                                <button onClick={handleMailSubmit} className="userEditButton">메일 보내기</button>
                             </>
                         )}
                     </div>
-            <div className="section">
-              <p className="welcomeMessage">welcome to updown </p>
-
-              <button onClick={handleMailSubmit} className="mailButton">메일 보내기</button>
-              <button onClick={handlePasswordChange} className="editButton">로그아웃 하기</button>
-            </div>
           </div>
 
           <div className='container-sub'>
@@ -193,6 +195,7 @@ function Login() {
           <p> {estimatedCost} 요금제 </p>  
           </div>
           <FileTypeRatioTable fileTypeRatio={fileTypeRatio} />
+          
           </div>
           </div>
       ): (

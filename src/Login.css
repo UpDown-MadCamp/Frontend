@@ -116,7 +116,15 @@
     align-items: left;
     margin-left: 10%;
   }
-  
+  .section_text {
+    flex: 1;
+    display: center;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+    padding: 5% 0px;
+    margin-left: 10%;
+  }
   .header {
     color: #333;
     margin-bottom: 20px;
@@ -138,10 +146,13 @@
   }
   
   .welcomeMessage {
-    font-size: 30px;
-    font-weight: 400;
-    margin: 0;
     color: #4a4a4a;
+    width:150%;
+    font-weight: 600;
+    font-size: 3ch;
+  }
+  .welcomeMessage:hover{
+    color:#0084ff;
   }
 
   .mailButton {
@@ -158,7 +169,8 @@
   }
   
   .editButton {
-    margin-top: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 10px 20px;
     font-size: 20px;
     cursor: pointer;
@@ -167,9 +179,27 @@
     border: none;
     border-radius: 4px;
     outline: none;
+    width: 80%;
     transition: background-color 0.2s ease-in-out;
   }
   
+  .userEditButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #979797;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    width: 80%;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .userEditButton:hover{
+    background-color: #ccc;
+  }
   .editButton:hover {
     background-color: #0056b3;
   }
@@ -217,4 +247,21 @@
 .google-login-btn:active {
     transform: translateY(0);
     background-color: #3367d6; /* Even darker shade for active state */
+}
+
+.user-input {
+  display: flex;
+  width: 75%;
+  border: none;
+  border-bottom: 3px solid #333; /* Color of the underline */
+  padding: 10px 10px; /* Spacing inside the search bar */
+  font-size:16px; /* Size of the input text */
+  color: #333; /* Text color */
+  background-color: transparent; /* Background color */
+  margin : 40px 0px;
+}
+
+.user-input:focus {
+  outline: none;
+  border-bottom-color: #ce255d; /* Color of the underline on focus */
 }
