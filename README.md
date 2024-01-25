@@ -1,70 +1,90 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/6d7107e1-ac34-49fc-8187-bd3e8a43f935)
 
-## Available Scripts
+# UpDown
 
-In the project directory, you can run:
+***편리한 파일 업로드/다운로드 플랫폼***
 
-### `npm start`
+→ 프린트 카페 등에서 간단한 한글 개인키만으로 로그인 없이 다운로드 가능
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+→ 대용량 파일도 업로드/다운로드가 가능한 드라이브 서비스
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[UpDown-MadCamp](https://github.com/UpDown-MadCamp)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 개발 환경
 
-### `npm run build`
+**Frontend** : React
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Backend** : NodeJS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Database** : mongoDB ATLAS
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 팀원
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**양준원:** 카이스트 산업공학과 22학번
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[yangjunwon5899 - Overview](https://github.com/yangjunwon5899)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**조서윤**: 고려대학교 컴퓨터학과 22학번
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[seoyuncho - Overview](https://github.com/seoyuncho)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 주요 기능
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 회원가입&로그인
 
-### Code Splitting
+- 로그인 페이지에서 회원 가입 및 로그인
+    - 로그인 버튼 눌러서 로그인
+    - 구글 로그인 가능
+    - 미 가입 시 회원 가입 버튼 눌러 회원가입
+    - 로그인 성공 시 로그인 버튼 마이페이지로 변경
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/d8b918b3-5155-4bf5-ba2a-54e7c1474681)
 
-### Analyzing the Bundle Size
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/8e63ba20-8f5d-47b9-9b87-7046ef724cd1)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/c96d14e2-e357-4e04-917b-fd27b89fe916)
 
-### Making a Progressive Web App
+-9928-26d2e10eb0fc/13a939a8-a264-41f2-9c4f-5eacc5f2923f/Untitled.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 업로드
 
-### Advanced Configuration
+- 로그인 후 내 파일 업로드
+    - 파일 선택하기로 파일 선택, 업로드로 파일 업로드
+    - 스위치로 저용량 / 대용량 업로드 모드 변경 가능
+    - 업로드 시 한글 개인키가 발급되어 파일 리스트에서 확인 가능
+    - 파일 리스트를 클릭해 파일 세부 정보 및 제목 수정 가능
+  
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/3c253bbc-ec0f-4f8f-b335-3d75bacd08c7)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/1df6cdc3-5d04-42bd-9a70-f070f9523cef)
 
-### Deployment
+![image](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/6389e45c-816b-4b05-81d1-a99455797edb)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 다운로드
 
-### `npm run build` fails to minify
+- 로그인 없이 한글 개인키로 직접 다운로드
+    - 업로드 시 발급받은 한글 개인키를 입력창에 입력
+    - download 버튼을 누르면 개인키에 해당하는 파일 바로 다운로드 가능
+    - image(png, jpeg ..), pdf, word(doc, docx, hwp, hwpx), ppt, pptx, mp4, mp3, C ..  파일 지원
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/0c340968-035a-4b38-8613-8f3b1bb25b4f)
+
+### 마이페이지
+
+- 업로드 한 파일 한눈에 보고, 회원 정보 수정
+    - 내 이름, 이메일 정보 보기
+    - 내 정보 수정하기로 이름 바꾸기
+    - 메일 보내기로 내가 업로드한 모든 파일 내역과 각 개인키를 등록된 이메일로 받기
+    - 전체 업로드 파일 내역 원형 차트와 테이블로 한 눈에 보기
+
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/7f816d29-d944-4e02-8a02-7c9723a189e1)
+
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/60ff8d3a-95a7-4a51-9702-e5215cfe410f)
+
