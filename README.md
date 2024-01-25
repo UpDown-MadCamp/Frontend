@@ -60,7 +60,7 @@
     - 스위치로 저용량 / 대용량 업로드 모드 변경 가능
     - 업로드 시 한글 개인키가 발급되어 파일 리스트에서 확인 가능
     - 파일 리스트를 클릭해 파일 세부 정보 및 제목 수정 가능
-    - 
+  
 ![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/3c253bbc-ec0f-4f8f-b335-3d75bacd08c7)
 
 ![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/1df6cdc3-5d04-42bd-9a70-f070f9523cef)
