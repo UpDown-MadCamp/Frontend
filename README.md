@@ -44,7 +44,7 @@
     - 구글 로그인 가능
     - 미 가입 시 회원 가입 버튼 눌러 회원가입
     - 로그인 성공 시 로그인 버튼 마이페이지로 변경
-    - 
+
 ![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/d8b918b3-5155-4bf5-ba2a-54e7c1474681)
 
 ![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/8e63ba20-8f5d-47b9-9b87-7046ef724cd1)
@@ -73,6 +73,7 @@
     - 업로드 시 발급받은 한글 개인키를 입력창에 입력
     - download 버튼을 누르면 개인키에 해당하는 파일 바로 다운로드 가능
     - image(png, jpeg ..), pdf, word(doc, docx, hwp, hwpx), ppt, pptx, mp4, mp3, C ..  파일 지원
+
 ![image](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/0c340968-035a-4b38-8613-8f3b1bb25b4f)
 
 ### 마이페이지
