@@ -1,4 +1,5 @@
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/13bc6d31-5bf5-48fd-912f-de94c6d1ef3b/Untitled.png)
+
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/6d7107e1-ac34-49fc-8187-bd3e8a43f935)
 
 # UpDown
 
@@ -43,12 +44,14 @@
     - 구글 로그인 가능
     - 미 가입 시 회원 가입 버튼 눌러 회원가입
     - 로그인 성공 시 로그인 버튼 마이페이지로 변경
+    - 
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/d8b918b3-5155-4bf5-ba2a-54e7c1474681)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/409e77a6-9595-440b-8904-1d5cc1e1bd67/Untitled.png)
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/8e63ba20-8f5d-47b9-9b87-7046ef724cd1)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/48292228-29b4-483b-83dc-5f160cf9ca2e/Untitled.png)
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/c96d14e2-e357-4e04-917b-fd27b89fe916)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/13a939a8-a264-41f2-9c4f-5eacc5f2923f/Untitled.png)
+-9928-26d2e10eb0fc/13a939a8-a264-41f2-9c4f-5eacc5f2923f/Untitled.png)
 
 ### 업로드
 
@@ -59,6 +62,7 @@
     - 파일 리스트를 클릭해 파일 세부 정보 및 제목 수정 가능
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/d07bd3a9-5a1c-48fd-8373-306bfc8a54c0/Untitled.png)
+![image](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/6389e45c-816b-4b05-81d1-a99455797edb)
 
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/df1a91c1-b901-4b77-92f6-359435667a1e/Untitled.png)
