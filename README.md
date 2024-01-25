@@ -60,6 +60,7 @@
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/d07bd3a9-5a1c-48fd-8373-306bfc8a54c0/Untitled.png)
 
+
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/df1a91c1-b901-4b77-92f6-359435667a1e/Untitled.png)
 
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/bc07a445-7792-461a-9abc-36e310a796e0/Untitled.png)
@@ -70,8 +71,7 @@
     - 업로드 시 발급받은 한글 개인키를 입력창에 입력
     - download 버튼을 누르면 개인키에 해당하는 파일 바로 다운로드 가능
     - image(png, jpeg ..), pdf, word(doc, docx, hwp, hwpx), ppt, pptx, mp4, mp3, C ..  파일 지원
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/22be2944-8d29-410a-88a6-767e63410adf/Untitled.png)
+![image](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/0c340968-035a-4b38-8613-8f3b1bb25b4f)
 
 ### 마이페이지
 
