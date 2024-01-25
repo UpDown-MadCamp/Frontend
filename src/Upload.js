@@ -70,9 +70,9 @@ function Upload() {
     formData.append('email',email);
 
     try {
-      var url = "/api/files/upload";
+      var url = "http://localhost:5000/files/upload";
       if (isEnabled) {
-        url = "/api/files/uploadGrid";
+        url = "http://localhost:5000/files/uploadGrid";
       }
       const response = await axios.post(url, formData, {
 

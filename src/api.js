@@ -1,12 +1,22 @@
 import axios from 'axios';
 import { useAuth } from './AuthContext';
 
+// Axios 인스턴스 생성
+const api = axios.create({
+  baseURL: 'http://localhost:5000', // API의 기본 URL을 설정
+  withCredentials: true, // CORS 관련 설정
+  headers: {
+    'Content-Type': 'application/json',
+    
+  },
+});
+
 
 // 로그인 요청 함수
 const login = async (username_c, password) => {
   
   try {
-    const response = await axios.post('/api/auth/login', { username: username_c, password: password });
+    const response = await api.post('/auth/login', { username: username_c, password: password });
     if (response.status === 200){
     console.log('로그인 성공:', response.data);
     return response;
@@ -28,7 +38,7 @@ export { login };
 const download = async (private_key) => {
   
   try {
-    const response = await axios.post('/api/files/download', { private_key: private_key });
+    const response = await api.post('files/download', { private_key: private_key });
     if (response.status === 200){
     console.log('다운로드 성공:', response.data);
     return response;
@@ -52,7 +62,7 @@ const email = sessionStorage.getItem('email');
 
 const setFiles = async () => {
   try{
-    const response = await axios.post('/api/files/find', {email : sessionStorage.getItem('email')}, {
+    const response = await api.post('/files/find', {email : sessionStorage.getItem('email')}, {
       headers: {
         'Content-Type': 'application/json',
       },   

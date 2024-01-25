@@ -47,7 +47,7 @@ function Login() {
         sessionStorage.setItem('email', userData.data.user.email);
         sessionStorage.setItem('username', userData.data.user.username);
         sessionStorage.setItem('user', JSON.stringify(userData.data.user));
-        sessionStorage.setItem('islogged', true);
+        sessionStorage.setItem('islogged', true)
         setFiles();
       } else {
         alert('비밀번호 또는 유저네임이 잘못됐습니다');
@@ -89,6 +89,24 @@ function Login() {
       return ratios;
     }, {});
   };
+
+  const calculateFileSizeRatio = (files) => {
+    const fileSizeSums = files.reduce((sums, file) => {
+      const extension = file.filename.split('.').pop().toLowerCase();
+      sums[extension] = (sums[extension] || 0) + file.size;
+      return sums;
+    }, {});
+  
+    const totalSize = Object.values(fileSizeSums).reduce((total, size) => total + size, 0);
+  
+    const fileSizeRatios = Object.keys(fileSizeSums).reduce((ratios, key) => {
+      ratios[key] = (fileSizeSums[key] / totalSize) * 100;
+      return ratios;
+    }, {});
+  
+    return fileSizeRatios;
+  };
+
   const calculateEstimatedCost = (files) => {
     return "Basic: 0원";
   };
@@ -98,14 +116,14 @@ function Login() {
     return isNaN(sizeValue) ? 0 : sizeValue * 1024; // KB 단위를 바이트로 변환
   };
   const islogged = sessionStorage.getItem('islogged');
-  var username = sessionStorage.getItem('username');
+  const username = sessionStorage.getItem('username');
   const email = sessionStorage.getItem('email');
 
   // 메일 전송 버튼 클릭 핸들러
   const handleMailSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/mail/send/', { email });
+      const response = await axios.post('http://localhost:5000/mail/send/', { email });
       console.log(response);
       alert(response.data);
     } catch (error) {
@@ -125,24 +143,33 @@ function Login() {
   const totalSize = calculateTotalSize(files);
   sessionStorage.setItem('totalSize',totalSize);
   const fileTypeRatio = calculateFileTypeRatio(files);
+  const fileSizeRatio = calculateFileSizeRatio(files);
   const estimatedCost = calculateEstimatedCost(files);
 
   console.log(fileTypeRatio);
 
-
+  const handleUsernameClick = () => {
+    setIsEditing(true);
+    const newUsername = window.prompt('Enter new Username:', username);
+    if (newUsername) {
+      setNewUsername(newUsername);
+    }
+    sessionStorage.setItem('username', newUsername);
+    setIsEditing(false);
+  };
+  
   const handleEditSubmit = async () => {
     setIsEditing(true);
     try {
-        const response = await axios.put('/api/auth/edit/', {
+        sessionStorage.setItem('username', newUsername);
+        const response = await axios.put('http://localhost:5000/auth/edit/', {
             email: email, // 현재 로그인된 사용자의 이메일
             newUsername: newUsername // 새로운 사용자 이름
         });
         console.log(response.data.message);
-        //sessionStorage.removeItem('username');
-        sessionStorage.setItem('username', newUsername);
-        //username = newUsername;
         window.location.reload();
         setIsEditing(false);
+      
         // 성공적으로 업데이트되었다면, 사용자에게 알리고 필요한 상태를 업데이트하세요.
     } catch (error) {
         console.error(error);
@@ -152,11 +179,10 @@ function Login() {
 
   return (
     <div>
-      
       {islogged ? (
         <div className='login-page'>
-            <div className="container">
-            <img src={updownGif} alt="GIF" style={{ maxWidth: '10%', height: '30%', marginLeft:'30px', margin:'3% 5px'}} />
+          <div className="container">
+            <img src={updownGif} alt="GIF" style={{ maxWidth: '10%', height: '30%', marginLeft:'7%', margin:'3% 5px'}} />
             <div className="section">
               <h1 className="header">mypage</h1>
               <p className="info"><strong>내 이름</strong> {username}</p>
@@ -167,42 +193,42 @@ function Login() {
               <p className="welcomeMessage">welcome to updown </p>
             </div>
             <div className="section">
-                        {isEditing ? (
-                          <div className='section_text'>
-                            <form>
-                                <input
-                                    type="text"
-                                    value={newUsername}
-                                    onChange={(e) => setNewUsername(e.target.value)}
-                                    className='user-input'
-                                    required
-                                />
-                                <button type="submit" onClick={handleEditSubmit} className='userEditButton'>저장하기</button>
-                            </form>
-                            </div>
-                        ) : (
-                            <>
-                            <button onClick={handlePasswordChange} className="editButton">로그아웃 하기</button>
-                                <button onClick={() => setIsEditing(true)} className="userEditButton">내 정보 수정하기</button>
-                                <button onClick={handleMailSubmit} className="userEditButton">메일 보내기</button>
-                            </>
-                        )}
-                    </div>
-
+              {isEditing ? (
+                <div className='section_text'>
+                  <form>
+                      <input
+                          type="text"
+                          value={newUsername}
+                          onChange={(e) => setNewUsername(e.target.value)}
+                          className='user-input'
+                          required
+                      />
+                      <button type="submit" onClick={handleEditSubmit} className='userEditButton'>저장하기</button>
+                  </form>
+                </div>
+              ) : (
+                <>
+                  <button onClick={handlePasswordChange} className="editButton">로그아웃 하기</button>
+                  <button onClick={() => setIsEditing(true)} className="userEditButton">내 이름 수정하기</button>
+                  <button onClick={handleMailSubmit} className="userEditButton">메일 보내기</button>
+                </>
+              )}
+            </div>
           </div>
 
-          <div className='container-sub'>
-          <div className='text-column'> 
-          <p> totalSize : {totalSize.toFixed(0)} KB </p>
-          <p> {estimatedCost} 요금제 </p>  
-          </div>
-          <FileTypeRatioTable fileTypeRatio={fileTypeRatio} />
+          <div className='container-sub' style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className='text-column' > 
+              <p> totalSize : {totalSize.toFixed(0)} KB </p>
+              <p> {estimatedCost} 요금제 </p>  
+            </div>
+            
+          <FileTypeRatioTable fileTypeRatio={fileTypeRatio} fileSizeRatio={fileSizeRatio} />
           
           </div>
-          </div>
+        </div>
       ): (
         <div className='login-page'>
-        <form className="login-form" onSubmit={handleSubmit}>
+          <form className="login-form" onSubmit={handleSubmit}>
             <h1>Login</h1>
             <input className='input-text'
               type="text"
@@ -212,8 +238,6 @@ function Login() {
               onChange={(e) => setusername_c(e.target.value)}
               required
             />
-    
-    
             <input className='input-text'
               type="password"
               name="password"
@@ -222,16 +246,13 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-    
             <button type="submit">Login</button>
             <GoogleLoginButton />
           </form>
-          
           <button onClick={handleOpenModal} className = "signButton">If not resgistered, Sign In</button>
           {isModalOpen && <SignInModal onClose={handleCloseModal} />}
-          </div>
+        </div>
       )}
-      
     </div>
   );
 }

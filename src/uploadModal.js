@@ -26,7 +26,7 @@ function UploadModal({ formData, onClose }) {
   const delete_file = async () => {
     console.log(formData.key)
     try {
-      const response = await axios.delete('/api/files/delete/' + formData.key);
+      const response = await axios.delete('http://localhost:5000/files/delete/' + formData.key);
       setFiles();
       alert("File deleted successfully");
       console.log(response.message);
@@ -44,7 +44,7 @@ const edit_file = async () => {
     }
 
     try {
-        const response = await axios.put('/api/files/edit/' + formData.key, {
+        const response = await axios.put('http://localhost:5000/files/edit/' + formData.key, {
             newFilename: filename
         });
         setFiles();

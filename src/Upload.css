@@ -132,7 +132,7 @@
 
 .button-row {
   display: flex;
-
+  text-align: center;
   flex-direction: row;
 }
 .fileInputLabel {
