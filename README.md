@@ -60,14 +60,12 @@
     - 스위치로 저용량 / 대용량 업로드 모드 변경 가능
     - 업로드 시 한글 개인키가 발급되어 파일 리스트에서 확인 가능
     - 파일 리스트를 클릭해 파일 세부 정보 및 제목 수정 가능
+    - 
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/3c253bbc-ec0f-4f8f-b335-3d75bacd08c7)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/d07bd3a9-5a1c-48fd-8373-306bfc8a54c0/Untitled.png)
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/1df6cdc3-5d04-42bd-9a70-f070f9523cef)
+
 ![image](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/6389e45c-816b-4b05-81d1-a99455797edb)
-
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/df1a91c1-b901-4b77-92f6-359435667a1e/Untitled.png)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/bc07a445-7792-461a-9abc-36e310a796e0/Untitled.png)
 
 ### 다운로드
 
@@ -85,6 +83,7 @@
     - 메일 보내기로 내가 업로드한 모든 파일 내역과 각 개인키를 등록된 이메일로 받기
     - 전체 업로드 파일 내역 원형 차트와 테이블로 한 눈에 보기
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/f7098388-2bc1-4a8f-aa81-d70f17b7c39d/Untitled.png)
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/7f816d29-d944-4e02-8a02-7c9723a189e1)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/72e7faa2-fccb-4765-b1c2-2ec6766e3952/Untitled.png)
+![Untitled](https://github.com/UpDown-MadCamp/Frontend/assets/103191590/60ff8d3a-95a7-4a51-9702-e5215cfe410f)
+
